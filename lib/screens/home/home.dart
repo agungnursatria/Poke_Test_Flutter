@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/bloc/home_bloc.dart';
-import 'package:test_app/bloc/home_event.dart';
-import 'package:test_app/bloc/home_state.dart';
-import 'package:test_app/homepage_view.dart';
+import 'package:test_app/screens/home/bloc/home_bloc.dart';
+import 'package:test_app/screens/home/bloc/home_event.dart';
+import 'package:test_app/screens/home/bloc/home_state.dart';
+import 'package:test_app/screens/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {

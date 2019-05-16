@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/screens/detail/detail.dart';
 import 'package:test_app/model/pokemon.dart';
-import 'detail.dart';
 
 class HomePageView extends StatelessWidget {
   PokeHub pokeHub;
@@ -19,11 +19,12 @@ class HomePageView extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PokeDetail(pokemon: poke,))
-                      );
+                    Navigator.pushNamed(
+                      context, 
+                      '/detail', 
+                      arguments: PokeDetailArguments(
+                        pokemon: poke
+                      ));
                   },
                   child: Hero(
                     tag: poke.img,

@@ -4,6 +4,7 @@ class PokeHub {
   PokeHub({this.pokemon});
 
   PokeHub.fromJson(Map<String, dynamic> json) {
+    // print(json);
     if (json['pokemon'] != null) {
       pokemon = new List<Pokemon>();
       json['pokemon'].forEach((v) {

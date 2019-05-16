@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:test_app/bloc/home_event.dart';
-import 'package:test_app/bloc/home_service.dart';
-import 'package:test_app/bloc/home_state.dart';
+import 'package:test_app/screens/home/bloc/home_event.dart';
+import 'package:test_app/screens/home/service/home_service.dart';
+import 'package:test_app/screens/home/bloc/home_state.dart';
 import 'package:test_app/dependency_injection/injector.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -18,8 +18,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         yield PokemonLoading();
         final pokehub = await service.fetchData();
         yield PokemonLoaded(pokeHub: pokehub);
-      } catch (_) {
-        yield PokemonLoadError();
+      } catch (e) {
+        yield PokemonLoadError(message: e.message);
       }
     } else {
       try {

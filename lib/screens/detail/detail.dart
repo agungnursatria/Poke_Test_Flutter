@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
-import 'model/pokemon.dart';
+import 'package:test_app/model/pokemon.dart';
 
-
-class PokeDetail extends StatelessWidget {
+class PokeDetailArguments {
   final Pokemon pokemon;
 
-  PokeDetail({this.pokemon});
+  PokeDetailArguments({this.pokemon}) : assert(pokemon != null);
+}
 
+class PokeDetailPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return PokeDetailState();
+  }
+}
+
+
+class PokeDetailState extends State<PokeDetailPage> {
+  Pokemon pokemon;
+  
   bodyWidget(BuildContext context) => Stack(
         children: <Widget>[
           Positioned(
@@ -91,6 +102,8 @@ class PokeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PokeDetailArguments args = ModalRoute.of(context).settings.arguments;
+    pokemon = args.pokemon;
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(
