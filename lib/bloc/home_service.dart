@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 import 'package:test_app/model/pokemon.dart';
-import '../NetworkInterface.dart';
+import '../network_interface.dart';
 
 class HomeService{
   final NetworkInterface networkInterface;

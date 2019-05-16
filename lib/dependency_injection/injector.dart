@@ -1,6 +1,6 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:http/http.dart' as http;
-import 'package:test_app/NetworkInterface.dart';
+import 'package:test_app/network_interface.dart';
 import 'package:test_app/bloc/home_service.dart';
 
 class InjectorContainer {
