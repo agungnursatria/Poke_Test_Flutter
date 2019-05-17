@@ -19,15 +19,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         final pokehub = await service.fetchData();
         yield PokemonLoaded(pokeHub: pokehub);
       } catch (e) {
-        yield PokemonLoadError(message: e.message);
+        yield PokemonLoadError();
       }
     } else {
+      HomeState curState = (currentState as PokemonLoaded).copyWith();
       try {
         yield PokemonLoading();
         final pokehub = await service.fetchData();
         yield PokemonLoaded(pokeHub: pokehub);
       } catch (_) {
-        yield currentState;
+        yield curState;
       }
     }
   }

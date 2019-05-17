@@ -8,7 +8,9 @@ class HomePageView extends StatelessWidget {
   HomePageView({
     Key key,
     @required this.pokeHub
-  }) : super(key: key);
+  }) : 
+  assert(pokeHub != null),
+  super(key: key);
 
   @override
   Widget build(BuildContext context) {

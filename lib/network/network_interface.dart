@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
 
 import 'config.dart';
 import 'network_library.dart';
@@ -7,8 +6,6 @@ import 'network_model.dart';
 class NetworkInterface{
   static const String _baseUrl = BASE_URL;
   NetworkLibrary library = NetworkLibrary();
-
-  final http.Client client = http.Client();
   
   NetworkInterface();
   
