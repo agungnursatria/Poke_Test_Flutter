@@ -34,44 +34,73 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Poke App"),
-        backgroundColor: Colors.cyan,
-      ),
-      body: BlocBuilder(
-        bloc: _homeBloc,
-        builder: (BuildContext context, HomeState state) {
-          if (state is PokemonUninitialized || state is PokemonLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (state is PokemonLoadError) {
-            if (_connection.isOffline) {
-              return Center(child: Text("Error fetch data"));
-            } else {
-              Timer(
-                Duration(seconds: 5), 
-                () => _homeBloc.dispatch(FetchData())
-                );
-              return Center(child: Text("Retrying in 5 seconds"));
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Poke App"),
+          backgroundColor: Colors.cyan,
+        ),
+        body: BlocBuilder(
+          bloc: _homeBloc,
+          builder: (BuildContext context, HomeState state) {
+            if (state is PokemonUninitialized || state is PokemonLoading) {
+              return Center(child: CircularProgressIndicator());
             }
-          }
-          if (state is PokemonLoaded) {
-            return HomePageView(
-              pokeHub: state.pokeHub,
-            );
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _homeBloc.dispatch((_homeBloc.currentState is PokemonLoaded)
-              ? RefreshData()
-              : FetchData());
-        },
-        backgroundColor: Colors.cyan,
-        child: Icon(Icons.refresh),
+            if (state is PokemonLoadError) {
+              if (_connection.isOffline) {
+                return Center(child: Text("Error fetch data"));
+              } else {
+                Timer(Duration(seconds: 5),
+                    () => _homeBloc.dispatch(FetchData()));
+                return Center(child: Text("Retrying in 5 seconds"));
+              }
+            }
+            if (state is PokemonLoaded) {
+              return HomePageView(
+                pokeHub: state.pokeHub,
+              );
+            }
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _homeBloc.dispatch((_homeBloc.currentState is PokemonLoaded)
+                ? RefreshData()
+                : FetchData());
+          },
+          backgroundColor: Colors.cyan,
+          child: Icon(Icons.refresh),
+        ),
       ),
     );
+  }
+
+  Future<bool> _onBackPressed() {
+    return showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to exit an App'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("No"),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              ),
+              FlatButton(
+                child: Text("Yes"),
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+              ),
+            ],
+          ),
+        ) ??
+        false;
   }
 }
