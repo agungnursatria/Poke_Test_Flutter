@@ -5,7 +5,7 @@ import 'package:test_app/screens/detail/detail.dart';
 import 'package:test_app/screens/home/bloc/home_bloc.dart';
 import 'package:test_app/screens/home/home.dart';
 
-main(){
+main() {
   runApp(App());
 }
 
@@ -29,6 +29,15 @@ class _AppState extends State<App> {
     return BlocProvider(
       bloc: _homeBloc,
       child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.cyan,
+          accentColor: Colors.black,
+          primaryTextTheme: TextTheme(
+            title: TextStyle(color: Colors.white),
+          ),
+          primaryIconTheme:
+              Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
+        ),
         debugShowCheckedModeBanner: false,
         title: 'Pokemon App',
         initialRoute: '/',
@@ -41,7 +50,7 @@ class _AppState extends State<App> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     _homeBloc.dispose();
     super.dispose();
   }

@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Poke App"),
-          backgroundColor: Colors.cyan,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: BlocBuilder(
           bloc: _homeBloc,
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 ? RefreshData()
                 : FetchData());
           },
-          backgroundColor: Colors.cyan,
+          backgroundColor: Theme.of(context).primaryColor,
           child: Icon(Icons.refresh),
         ),
       ),

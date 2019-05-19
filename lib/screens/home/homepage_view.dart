@@ -15,6 +15,7 @@ class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      physics: BouncingScrollPhysics(),
       crossAxisCount: 2,
       children: pokeHub.pokemon
           .map((poke) => Padding(

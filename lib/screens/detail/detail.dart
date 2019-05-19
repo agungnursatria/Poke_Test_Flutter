@@ -105,10 +105,10 @@ class PokeDetailState extends State<PokeDetailPage> {
     PokeDetailArguments args = ModalRoute.of(context).settings.arguments;
     pokemon = args.pokemon;
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.cyan,
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text(pokemon.name),
       ),
       body: bodyWidget(context),
