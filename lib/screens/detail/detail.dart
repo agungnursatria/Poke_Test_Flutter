@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:test_app/model/pokemon.dart';
 
 class PokeDetailArguments {
@@ -7,17 +8,27 @@ class PokeDetailArguments {
   PokeDetailArguments({this.pokemon}) : assert(pokemon != null);
 }
 
-class PokeDetailPage extends StatefulWidget{
+class PokeDetailPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return PokeDetailState();
   }
 }
 
-
 class PokeDetailState extends State<PokeDetailPage> {
   Pokemon pokemon;
-  
+
+  @override
+  void initState() {
+    super.initState();
+    _portraitModeOnly();
+  }
+
+  @override
+  void dispose() {
+    _enableRotation();
+  }
+
   bodyWidget(BuildContext context) => Stack(
         children: <Widget>[
           Positioned(
@@ -113,5 +124,22 @@ class PokeDetailState extends State<PokeDetailPage> {
       ),
       body: bodyWidget(context),
     );
+  }
+
+  /// blocks rotation; sets orientation to: portrait
+  void _portraitModeOnly() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
+
+  void _enableRotation() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
   }
 }
