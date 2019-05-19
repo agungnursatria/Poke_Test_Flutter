@@ -101,8 +101,8 @@ class PokeDetailState extends State<PokeDetailPage> {
             child: Hero(
                 tag: pokemon.img,
                 child: Container(
-                  height: 180.0,
-                  width: 180.0,
+                  height: 170.0,
+                  width: 170.0,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover, image: NetworkImage(pokemon.img))),
