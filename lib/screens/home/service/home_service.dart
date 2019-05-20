@@ -1,4 +1,5 @@
 import 'package:test_app/model/pokemon.dart';
+import 'package:test_app/network/exceptionHandler.dart';
 import 'package:test_app/network/network_interface.dart';
 
 class HomeService{
@@ -13,7 +14,7 @@ class HomeService{
       if (responseModel.code == 200) {
         return PokeHub.fromJson(responseModel.response);
       } else {
-        throw Exception('Error fetch data');
+        throw FetchDataException(responseModel.error);
       }
     });
     return pokehub;

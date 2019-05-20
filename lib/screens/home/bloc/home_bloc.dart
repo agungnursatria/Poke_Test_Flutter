@@ -3,6 +3,7 @@ import 'package:test_app/screens/home/bloc/home_event.dart';
 import 'package:test_app/screens/home/service/home_service.dart';
 import 'package:test_app/screens/home/bloc/home_state.dart';
 import 'package:test_app/dependency_injection/injector.dart';
+import 'package:test_app/network/exceptionHandler.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
@@ -18,8 +19,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         yield PokemonLoading();
         final pokehub = await service.fetchData();
         yield PokemonLoaded(pokeHub: pokehub);
-      } catch (e) {
-        yield PokemonLoadError();
+      } on FetchDataException catch (e) {
+        yield PokemonLoadError(message: e.getMessage);
       }
     } else {
       HomeState curState = (currentState as PokemonLoaded).copyWith();

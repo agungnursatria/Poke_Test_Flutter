@@ -23,4 +23,8 @@ class PokemonLoaded extends HomeState{
 
 class PokemonUninitialized extends HomeState{}
 class PokemonLoading extends HomeState{}
-class PokemonLoadError extends HomeState{}
+class PokemonLoadError extends HomeState{
+  String message;
+
+  PokemonLoadError({this.message});
+}

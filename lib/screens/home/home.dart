@@ -57,11 +57,17 @@ class _HomePageState extends State<HomePage> {
             }
             if (state is PokemonLoadError) {
               if (_connection.isOffline) {
-                return Center(child: Text("No internet connection"));
+                return Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Center(child: Text(state.message, textAlign: TextAlign.center,)),
+                );
               } else {
                 Timer(Duration(seconds: 5),
                     () => _homeBloc.dispatch(FetchData()));
-                return Center(child: Text("Retrying in 5 seconds"));
+                return Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Center(child: Text("${state.message}\nRetrying in 5 seconds", textAlign: TextAlign.center,)),
+                );
               }
             }
             if (state is PokemonLoaded) {
