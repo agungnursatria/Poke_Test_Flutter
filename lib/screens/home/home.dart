@@ -20,9 +20,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     _connection = Connection();
     _connection.initConnectivity(mounted);
     _connection.startListen();
+
     _homeBloc = BlocProvider.of<HomeBloc>(context);
     _homeBloc.dispatch(FetchData());
   }
