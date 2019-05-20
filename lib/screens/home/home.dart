@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                     () => _homeBloc.dispatch(FetchData()));
                 return Padding(
                   padding: const EdgeInsets.all(32.0),
-                  child: Center(child: Text("${state.message}\nRetrying in 5 seconds", textAlign: TextAlign.center,)),
+                  child: Center(child: Text("${state.message}\n\nRetrying in 5 seconds", textAlign: TextAlign.center,)),
                 );
               }
             }
