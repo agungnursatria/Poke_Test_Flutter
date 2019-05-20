@@ -4,13 +4,12 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/services.dart';
 
 class Connection {
-  Connection.initial();
-  static final Connection _instance = Connection.initial();
-  factory Connection() => _instance;
+  Function() onRefreshScreen;
+  Connection({this.onRefreshScreen});
 
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
-  bool isOffline = false;
+  bool isOffline = true;
   
   void startListen(){
     _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
@@ -58,5 +57,7 @@ class Connection {
         isOffline = true;
         break;
     }
+    print('Status is offline: $isOffline');
+    onRefreshScreen();
   }
 }

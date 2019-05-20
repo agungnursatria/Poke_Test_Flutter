@@ -21,7 +21,13 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _connection = Connection();
+    _connection = Connection(
+      onRefreshScreen: () {
+        if (_homeBloc.currentState is PokemonLoadError &&
+            !_connection.isOffline) {
+          _homeBloc.dispatch(FetchData());
+        }
+    });
     _connection.initConnectivity(mounted);
     _connection.startListen();
 
@@ -51,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             }
             if (state is PokemonLoadError) {
               if (_connection.isOffline) {
-                return Center(child: Text("Error fetch data"));
+                return Center(child: Text("No internet connection"));
               } else {
                 Timer(Duration(seconds: 5),
                     () => _homeBloc.dispatch(FetchData()));
@@ -82,26 +88,26 @@ class _HomePageState extends State<HomePage> {
     return showDialog(
           context: context,
           builder: (context) => new AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
-            title: new Text('Are you sure?'),
-            content: new Text('Do you want to exit an App'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("No"),
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                ),
+                title: new Text('Are you sure?'),
+                content: new Text('Do you want to exit an App'),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text("No"),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text("Yes"),
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
+                ],
               ),
-              FlatButton(
-                child: Text("Yes"),
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-              ),
-            ],
-          ),
         ) ??
         false;
   }
