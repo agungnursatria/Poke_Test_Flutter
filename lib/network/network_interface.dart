@@ -3,12 +3,13 @@ import 'package:dio/dio.dart';
 import 'config.dart';
 import 'network_library.dart';
 import 'network_model.dart';
-class NetworkInterface{
+
+class NetworkInterface {
   static const String _baseUrl = BASE_URL;
   NetworkLibrary library = NetworkLibrary();
-  
+
   NetworkInterface();
-  
+
   Future<NetworkModel> requestGet({
     String baseUrl = _baseUrl,
     String path,
@@ -21,8 +22,12 @@ class NetworkInterface{
             .buildStandardDio(_buildBasicHeader())
             .get("$baseUrl$path", queryParameters: queryParameters)
             .then((jsonResponse) {
-              return NetworkModel(jsonResponse.statusCode, jsonResponse.data, '');
-            });
+          return NetworkModel(
+            code: jsonResponse.statusCode, 
+            response: jsonResponse.data, 
+            error: ''
+          );
+        });
       } on DioError catch (e) {
         model = handleError(e, model);
       }
@@ -31,10 +36,18 @@ class NetworkInterface{
   }
 
   NetworkModel handleError(DioError e, NetworkModel model) {
-    print('Network Error ${e.message}');
     if (e.response != null) {
-      model = NetworkModel(e.response.statusCode ?? 0, Map(), e.message);
-    } else model = NetworkModel(0, Map(), e.message);
+      model = NetworkModel(
+        code: e.response.statusCode ?? 0, 
+        response: Map(),
+        error: e.response.data['message'] ?? 'Terjadi Kesalahan'
+      );
+    } else
+      model = NetworkModel(
+        code: 0, 
+        response: Map(),
+        error: e.response.data['message'] ?? 'Terjadi Kesalahan'
+      );
     return model;
   }
 

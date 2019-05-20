@@ -52,7 +52,7 @@ class Connection {
         isOffline = true;
         break;
     }
-    print('Status is offline: $isOffline');
+    // print('Status is offline: $isOffline');
     onRefreshScreen();
   }
 }

@@ -5,5 +5,5 @@ class NetworkModel {
 
   String error;
 
-  NetworkModel(this.code, this.response, this.error);
+  NetworkModel({this.code, this.response, this.error});
 }
