@@ -2,39 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:test_app/screens/detail/detail.dart';
 import 'package:test_app/model/pokemon.dart';
 
-class HomePageView extends StatelessWidget {
+class HomePageView extends StatefulWidget {
   PokeHub pokeHub;
 
-  HomePageView({
-    Key key,
-    @required this.pokeHub
-  }) : 
-  assert(pokeHub != null),
-  super(key: key);
+  HomePageView({Key key, @required this.pokeHub})
+      : assert(pokeHub != null),
+        super(key: key);
 
+  @override
+  _HomePageViewState createState() => _HomePageViewState();
+}
+
+class _HomePageViewState extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       physics: BouncingScrollPhysics(),
       crossAxisCount: 2,
-      children: pokeHub.pokemon
+      children: widget.pokeHub.pokemon
           .map((poke) => Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(
-                      context, 
-                      '/detail', 
-                      arguments: PokeDetailArguments(
-                        pokemon: poke
-                      ));
+                    Navigator.pushNamed(context, '/detail',
+                        arguments: PokeDetailArguments(pokemon: poke));
+                  },
+                  onLongPress: () {
+                    setState(() {
+                      widget.pokeHub.pokemon.remove(poke);
+                    });
+                    print("Remove : ${poke.name}");
                   },
                   child: Hero(
                     tag: poke.img,
                     child: Card(
                       child: Column(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Container(
                             height: 100.0,
