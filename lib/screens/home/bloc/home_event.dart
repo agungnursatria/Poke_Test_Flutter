@@ -4,3 +4,4 @@ abstract class HomeEvent extends Equatable{}
 
 class FetchData extends HomeEvent{}
 class RefreshData extends HomeEvent{}
+class RemoveData extends HomeEvent{}

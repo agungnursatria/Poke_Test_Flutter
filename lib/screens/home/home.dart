@@ -5,6 +5,7 @@ import 'package:test_app/network/connection_status.dart';
 import 'package:test_app/screens/home/bloc/home_bloc.dart';
 import 'package:test_app/screens/home/bloc/home_event.dart';
 import 'package:test_app/screens/home/bloc/home_state.dart';
+import 'package:test_app/screens/home/center_text.dart';
 import 'package:test_app/screens/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,12 +22,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    _connection = Connection(
-      onRefreshScreen: () {
-        if (_homeBloc.currentState is PokemonLoadError &&
-            !_connection.isOffline) {
-          _homeBloc.dispatch(FetchData());
-        }
+    _connection = Connection(onRefreshScreen: () {
+      if (_homeBloc.currentState is PokemonLoadError &&
+          !_connection.isOffline) {
+        _homeBloc.dispatch(FetchData());
+      }
     });
     _connection.initConnectivity(mounted);
     _connection.startListen();
@@ -57,34 +57,63 @@ class _HomePageState extends State<HomePage> {
             }
             if (state is PokemonLoadError) {
               if (_connection.isOffline) {
-                return Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Center(child: Text(state.message, textAlign: TextAlign.center,)),
+                CenterText(
+                  text: state.message,
                 );
               } else {
                 Timer(Duration(seconds: 5),
                     () => _homeBloc.dispatch(FetchData()));
-                return Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Center(child: Text("${state.message}\n\nRetrying in 5 seconds", textAlign: TextAlign.center,)),
+                CenterText(
+                  text: "${state.message}\n\nRetrying in 5 seconds",
                 );
               }
             }
             if (state is PokemonLoaded) {
-              return HomePageView(
-                pokeHub: state.pokeHub,
-              );
+              return (state.pokeHub.pokemon.isEmpty)
+                  ? CenterText(
+                      text: "No pokemon here",
+                    )
+                  : HomePageView(
+                      pokeHub: state.pokeHub,
+                    );
+            }
+            if (state is PokemonRemoved){
+              return CenterText(text: "No pokemon here",);
             }
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _homeBloc.dispatch((_homeBloc.currentState is PokemonLoaded)
-                ? RefreshData()
-                : FetchData());
-          },
-          backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.refresh),
+        floatingActionButton: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton(
+              onPressed: () {
+                print('Pressed');
+                if (_homeBloc.currentState is PokemonLoaded) {
+                  _homeBloc.dispatch(RemoveData());
+                  print('Remove Data');
+                }
+              },
+              backgroundColor: Colors.white,
+              child: Icon(
+                Icons.delete,
+                color: Theme.of(context).primaryColor,
+              ),
+              mini: true,
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                _homeBloc.dispatch((_homeBloc.currentState is PokemonLoaded)
+                    ? RefreshData()
+                    : FetchData());
+              },
+              backgroundColor: Theme.of(context).primaryColor,
+              child: Icon(Icons.refresh),
+            ),
+          ],
         ),
       ),
     );

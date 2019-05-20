@@ -3,6 +3,10 @@ class PokeHub {
 
   PokeHub({this.pokemon});
 
+  factory PokeHub.EmptyPokemon(){
+    return PokeHub(pokemon: List());
+  }
+
   PokeHub.fromJson(Map<String, dynamic> json) {
     // print(json);
     if (json['pokemon'] != null) {
