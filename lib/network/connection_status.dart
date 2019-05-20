@@ -39,12 +39,7 @@ class Connection {
     switch (result) {
       case ConnectivityResult.wifi:
         String wifiName;
-        try {
-          wifiName = await _connectivity.getWifiName();
-        } on PlatformException catch (e) {
-          print(e.toString());
-          wifiName = "Failed to get Wifi Name";
-        }
+        wifiName = await _connectivity.getWifiName();
         isOffline = (wifiName != null) ? false : true;
         break;
       case ConnectivityResult.mobile:
