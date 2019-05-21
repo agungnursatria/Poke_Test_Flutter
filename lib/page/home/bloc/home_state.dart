@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:test_app/model/pokemon.dart';
+import 'package:test_app/data/model/pokemon.dart';
 
 abstract class HomeState extends Equatable {
   HomeState([List props = const []]) : super(props);

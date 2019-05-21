@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/screens/detail/detail.dart';
-import 'package:test_app/model/pokemon.dart';
+import 'package:test_app/page/detail/detail.dart';
+import 'package:test_app/data/model/pokemon.dart';
 
 class HomePageView extends StatefulWidget {
-  PokeHub pokeHub;
+  final PokeHub pokeHub;
 
   HomePageView({Key key, @required this.pokeHub})
       : assert(pokeHub != null),

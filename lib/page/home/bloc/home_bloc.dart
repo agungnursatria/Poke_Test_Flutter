@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:test_app/model/pokemon.dart';
-import 'package:test_app/screens/home/bloc/home_event.dart';
-import 'package:test_app/screens/home/service/home_service.dart';
-import 'package:test_app/screens/home/bloc/home_state.dart';
-import 'package:test_app/dependency_injection/injector.dart';
-import 'package:test_app/network/exceptionHandler.dart';
+import 'package:test_app/page/home/bloc/home_event.dart';
+import 'package:test_app/page/home/service/home_service.dart';
+import 'package:test_app/page/home/bloc/home_state.dart';
+import 'package:test_app/di/injector.dart';
+import 'package:test_app/data/network/exceptionHandler.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override

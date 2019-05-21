@@ -1,6 +1,6 @@
-import 'package:test_app/model/pokemon.dart';
-import 'package:test_app/network/exceptionHandler.dart';
-import 'package:test_app/network/network_interface.dart';
+import 'package:test_app/data/model/pokemon.dart';
+import 'package:test_app/data/network/exceptionHandler.dart';
+import 'package:test_app/data/network/network_interface.dart';
 
 class HomeService{
   final NetworkInterface networkInterface;

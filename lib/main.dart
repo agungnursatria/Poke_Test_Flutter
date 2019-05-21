@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/dependency_injection/injector.dart';
-import 'package:test_app/screens/detail/detail.dart';
-import 'package:test_app/screens/home/bloc/home_bloc.dart';
-import 'package:test_app/screens/home/home.dart';
+import 'package:test_app/di/injector.dart';
+import 'package:test_app/page/detail/detail.dart';
+import 'package:test_app/page/home/bloc/home_bloc.dart';
+import 'package:test_app/page/home/home.dart';
 
 main() {
   runApp(App());

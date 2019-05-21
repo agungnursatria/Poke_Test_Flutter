@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CenterText extends StatelessWidget {
-  String text;
+  final String text;
 
   CenterText({this.text});
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:test_app/model/pokemon.dart';
+import 'package:test_app/data/model/pokemon.dart';
 
 class PokeDetailArguments {
   final Pokemon pokemon;
@@ -27,6 +27,7 @@ class PokeDetailState extends State<PokeDetailPage> {
   @override
   void dispose() {
     _enableRotation();
+    super.dispose();
   }
 
   bodyWidget(BuildContext context) => Stack(

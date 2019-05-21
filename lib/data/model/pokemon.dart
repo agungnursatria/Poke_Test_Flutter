@@ -3,7 +3,7 @@ class PokeHub {
 
   PokeHub({this.pokemon});
 
-  factory PokeHub.EmptyPokemon(){
+  factory PokeHub.emptyPokemon(){
     return PokeHub(pokemon: List());
   }
 
