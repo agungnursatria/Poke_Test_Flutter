@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:test_app/config/config.dart';
+import 'package:test_app/data/network/network_library.dart';
+import 'package:test_app/data/network/network_model.dart';
 
-import 'config.dart';
-import 'network_library.dart';
-import 'network_model.dart';
 
 class NetworkInterface {
   static const String _baseUrl = BASE_URL;

@@ -1,5 +1,5 @@
 import 'package:test_app/data/model/pokemon.dart';
-import 'package:test_app/data/network/exceptionHandler.dart';
+import 'package:test_app/utility/exception/fetch_data_exception.dart';
 import 'package:test_app/data/network/network_interface.dart';
 
 class HomeService{

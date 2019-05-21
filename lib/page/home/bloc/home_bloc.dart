@@ -3,7 +3,7 @@ import 'package:test_app/page/home/bloc/home_event.dart';
 import 'package:test_app/page/home/service/home_service.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';
 import 'package:test_app/di/injector.dart';
-import 'package:test_app/data/network/exceptionHandler.dart';
+import 'package:test_app/utility/exception/fetch_data_exception.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
