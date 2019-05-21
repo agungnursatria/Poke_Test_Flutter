@@ -26,7 +26,7 @@ class _HomePageViewState extends State<HomePageView> {
                 padding: const EdgeInsets.all(2.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, '/detail',
+                    Navigator.pushNamed(context, PokeDetailPage.PATH,
                         arguments: PokeDetailArguments(pokemon: poke));
                   },
                   onLongPress: () {

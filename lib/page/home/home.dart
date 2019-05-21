@@ -30,6 +30,13 @@ class _HomePageState extends State<HomePage> {
           !_connection.isOffline) {
         _homeBloc.dispatch(FetchData());
       }
+
+      if (_homeBloc.currentState is PokemonLoaded && !_connection.isOffline) {
+        if ((_homeBloc.currentState as PokemonLoaded).pokeHub.pokemon[0].num ==
+            '') {
+          _homeBloc.dispatch(FetchData());
+        }
+      }
     });
     _connection.initConnectivity(mounted);
     _connection.startListen();
@@ -100,6 +107,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             FloatingActionButton(
+              heroTag: 'fab_remove',
               onPressed: () {
                 print('Pressed');
                 if (_homeBloc.currentState is PokemonLoaded) {
@@ -118,6 +126,7 @@ class _HomePageState extends State<HomePage> {
               height: 8.0,
             ),
             FloatingActionButton(
+              heroTag: 'fab_refresh',
               onPressed: () {
                 _homeBloc.dispatch((_homeBloc.currentState is PokemonLoaded)
                     ? RefreshData()

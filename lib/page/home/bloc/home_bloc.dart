@@ -27,7 +27,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       Log.info("Remove Data DB");
       final pokehub = (currentState as PokemonLoaded).pokeHub;
       await service.removePokemonFromDB(event.pokemon);
-      print('removing pokemon');
       pokehub.pokemon.removeWhere((p) => p.id == event.pokemon.id);
       yield PokemonLoaded(pokeHub: pokehub);
     } else if (event is FetchData) {
@@ -38,7 +37,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         await service.clearDB();
         for (int i = 0; i < pokehub.pokemon.length; i++) {
           await service.insertPokemonToDB(pokehub.pokemon[i]);
-          print('insert pokemon ${pokehub.pokemon[i].name}');
         }
         yield PokemonLoaded(pokeHub: pokehub);
       } on FetchDataException catch (e) {

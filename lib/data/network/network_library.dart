@@ -17,7 +17,7 @@ class NetworkLibrary {
       InterceptorsWrapper(
         onRequest: (RequestOptions options) {
           options.headers.addAll(headers);
-          // DioLogger.onSend(TAG, options);
+          DioLogger.onSend(TAG, options);
           return options;
         },
         onResponse: (Response response) {
@@ -28,11 +28,11 @@ class NetworkLibrary {
           } else {
             response.data = jsonDecode(response.data);
           }
-          // DioLogger.onSuccess(TAG, response);
+          DioLogger.onSuccess(TAG, response);
           return response;
         },
         onError: (DioError error){
-          // DioLogger.onError(TAG, error);
+          DioLogger.onError(TAG, error);
           return error;
         }
       ),
