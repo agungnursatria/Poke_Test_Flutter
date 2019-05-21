@@ -9,7 +9,6 @@ class Env {
   static Env value;
 
   String appName;
-  String baseUrl;
   EnvType environmentType = EnvType.DEVELOPMENT;
 
   // Database Config

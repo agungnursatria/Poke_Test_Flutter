@@ -1,4 +1,4 @@
-import 'package:test_app/config/env.dart';
+import 'package:test_app/env.dart';
 
 main() => MainApp();
 

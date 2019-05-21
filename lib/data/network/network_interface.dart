@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:test_app/config/config.dart';
+import 'package:test_app/data/network/config/config.dart';
 import 'package:test_app/data/network/network_library.dart';
 import 'package:test_app/data/network/network_model.dart';
 
