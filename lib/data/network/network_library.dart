@@ -16,8 +16,6 @@ class NetworkLibrary {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options) {
-          // print('request to ${options.baseUrl}${options.path}');
-          // print('header $headers');
           options.headers.addAll(headers);
           DioLogger.onSend(TAG, options);
           return options;
@@ -30,11 +28,11 @@ class NetworkLibrary {
           } else {
             response.data = jsonDecode(response.data);
           }
-          // DioLogger.onSuccess(TAG, response);
+          DioLogger.onSuccess(TAG, response);
           return response;
         },
         onError: (DioError error){
-          // DioLogger.onError(TAG, error);
+          DioLogger.onError(TAG, error);
           return error;
         }
       ),
