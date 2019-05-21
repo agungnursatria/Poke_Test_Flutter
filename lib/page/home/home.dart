@@ -5,6 +5,7 @@ import 'package:test_app/data/network/connection_status.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/bloc/home_event.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';
+import 'package:test_app/utility/log/log.dart';
 import 'package:test_app/widget/center_text.dart';
 import 'package:test_app/page/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     _connection.startListen();
 
     _homeBloc = BlocProvider.of<HomeBloc>(context);
-    _homeBloc.dispatch((_connection.isOffline) ? FetchDataDB() : FetchData());
+    _homeBloc.dispatch(FetchDataDB());
   }
 
   @override
@@ -59,14 +60,15 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
             }
             if (state is PokemonLoadError) {
+              Log.info("Connection is offline => ${_connection.isOffline}");
               if (_connection.isOffline) {
-                CenterText(
+                return CenterText(
                   text: state.message,
                 );
               } else {
                 Timer(Duration(seconds: 5),
                     () => _homeBloc.dispatch(FetchData()));
-                CenterText(
+                return CenterText(
                   text: "${state.message}\n\nRetrying in 5 seconds",
                 );
               }
@@ -86,6 +88,10 @@ class _HomePageState extends State<HomePage> {
               return CenterText(
                 text: "No pokemon here",
               );
+            }
+            if (state is PokemonDBEmpty) {
+              _homeBloc.dispatch(FetchData());
+              return Container();
             }
           },
         ),

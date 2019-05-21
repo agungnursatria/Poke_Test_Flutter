@@ -22,7 +22,7 @@ class DBAppStoreRepository {
   Future<List<Pokemon>> getAllPokemon() async {
     var res = await _database.query('Pokemon');
     List<Pokemon> list =
-        res.isNotEmpty ? res.map((c) => Pokemon.fromDB(PokemonDB.fromJson(c))).toList() : [];
+        res.isNotEmpty ? res.map((c) => Pokemon.fromDB(PokemonDB.fromJson(c))).toList() : null;
     return list;
   }
 }
