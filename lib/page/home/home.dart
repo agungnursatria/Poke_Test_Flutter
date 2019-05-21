@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   static const String PATH = '/';
-  
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     _connection.startListen();
 
     _homeBloc = BlocProvider.of<HomeBloc>(context);
-    _homeBloc.dispatch(FetchData());
+    _homeBloc.dispatch((_connection.isOffline) ? FetchDataDB() : FetchData());
   }
 
   @override
@@ -78,10 +78,14 @@ class _HomePageState extends State<HomePage> {
                     )
                   : HomePageView(
                       pokeHub: state.pokeHub,
+                      onLongpress: (poke) =>
+                          _homeBloc.dispatch(RemoveDataDB(pokemon: poke)),
                     );
             }
-            if (state is PokemonRemoved){
-              return CenterText(text: "No pokemon here",);
+            if (state is PokemonRemoved) {
+              return CenterText(
+                text: "No pokemon here",
+              );
             }
           },
         ),

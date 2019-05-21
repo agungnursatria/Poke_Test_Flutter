@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stetho/flutter_stetho.dart';
 import 'package:test_app/app_component.dart';
-import 'package:test_app/app_store_application.dart';
+import 'package:test_app/di/injector.dart';
 
 enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, TESTING }
 
@@ -25,8 +25,11 @@ class Env {
         EnvType.STAGING == environmentType) {
       Stetho.initialize();
     }
+    
+    final InjectorContainer injector = InjectorContainer();
+    injector.initDependencyInjection();
 
-    var application = AppStoreApplication();
+    var application = injector.getAppStoreApplicationInstance();
     await application.onCreate();
     runApp(AppComponent(application));
   }

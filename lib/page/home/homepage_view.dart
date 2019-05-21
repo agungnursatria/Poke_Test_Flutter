@@ -4,9 +4,11 @@ import 'package:test_app/data/model/pokemon.dart';
 
 class HomePageView extends StatefulWidget {
   final PokeHub pokeHub;
+  final Function(Pokemon pokemon) _onLongPress;
 
-  HomePageView({Key key, @required this.pokeHub})
+  HomePageView({Key key, @required this.pokeHub, onLongpress})
       : assert(pokeHub != null),
+        this._onLongPress = onLongpress,
         super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class _HomePageViewState extends State<HomePageView> {
                         arguments: PokeDetailArguments(pokemon: poke));
                   },
                   onLongPress: () {
+                    widget._onLongPress(poke);
                     setState(() {
                       widget.pokeHub.pokemon.remove(poke);
                     });

@@ -1,3 +1,4 @@
+
 class PokeHub {
   List<Pokemon> pokemon;
 
@@ -111,6 +112,34 @@ class Pokemon {
     }
     return data;
   }
+
+  Pokemon.fromDB(PokemonDB pokedb) {
+    id = pokedb.id;
+    num = '';
+    name = pokedb.name;
+    img = pokedb.img;
+    type = List();
+    height = '';
+    weight = '';
+    candy = '';
+    candyCount = 0;
+    egg = '';
+    spawnChance = '';
+    avgSpawns = '';
+    spawnTime = '';
+    multipliers = List();
+    weaknesses = List();
+    nextEvolution = new List<NextEvolution>();
+  }
+
+
+  PokemonDB toDB() {
+    return PokemonDB(
+      id: this.id,
+      img: this.img,
+      name: this.name
+    );
+  }
 }
 
 class NextEvolution {
@@ -130,4 +159,31 @@ class NextEvolution {
     data['name'] = this.name;
     return data;
   }
+}
+
+class PokemonDB {
+  int id;
+  String name;
+  String img;
+
+  PokemonDB({
+    this.id,
+    this.name,
+    this.img,
+  });
+
+  PokemonDB.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    img = json['img'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['img'] = this.img;
+    return data;
+  }
+
 }
