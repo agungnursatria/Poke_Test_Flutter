@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:test_app/utility/log/DioLogger.dart';
 
 class NetworkLibrary {
-  static final NetworkLibrary _singleton = new NetworkLibrary._();
-  factory NetworkLibrary() => _singleton;
+  // static final NetworkLibrary _singleton = new NetworkLibrary._();
+  // factory NetworkLibrary() => _singleton;
 
-  NetworkLibrary._();
+  NetworkLibrary();
 
   static const String TAG = 'NetworkLibrary';
   
@@ -16,6 +16,8 @@ class NetworkLibrary {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options) {
+          // print('request to ${options.baseUrl}${options.path}');
+          // print('header $headers');
           options.headers.addAll(headers);
           DioLogger.onSend(TAG, options);
           return options;
@@ -28,11 +30,11 @@ class NetworkLibrary {
           } else {
             response.data = jsonDecode(response.data);
           }
-          DioLogger.onSuccess(TAG, response);
+          // DioLogger.onSuccess(TAG, response);
           return response;
         },
         onError: (DioError error){
-          DioLogger.onError(TAG, error);
+          // DioLogger.onError(TAG, error);
           return error;
         }
       ),

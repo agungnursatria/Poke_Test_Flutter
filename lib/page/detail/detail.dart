@@ -9,6 +9,8 @@ class PokeDetailArguments {
 }
 
 class PokeDetailPage extends StatefulWidget {
+  static const String PATH = '/detail';
+
   @override
   State<StatefulWidget> createState() {
     return PokeDetailState();
