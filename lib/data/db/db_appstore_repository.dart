@@ -11,18 +11,20 @@ class DBAppStoreRepository {
     return await _database.insert('Pokemon', pokemonDB.toJson());
   }
 
-  Future<int> delete(Pokemon poke) async{
-    return await _database.delete('Pokemon', where: "id = ?", whereArgs: [poke.id]);
+  Future<int> delete(Pokemon poke) async {
+    return await _database
+        .delete('Pokemon', where: "id = ?", whereArgs: [poke.id]);
   }
 
-  Future<void> deleteAllPokemon() async{
+  Future<void> deleteAllPokemon() async {
     await _database.rawDelete('DELETE FROM Pokemon');
   }
 
   Future<List<Pokemon>> getAllPokemon() async {
     var res = await _database.query('Pokemon');
-    List<Pokemon> list =
-        res.isNotEmpty ? res.map((c) => Pokemon.fromDB(PokemonDB.fromJson(c))).toList() : null;
+    List<Pokemon> list = res.isNotEmpty
+        ? res.map((c) => Pokemon.fromDB(PokemonDB.fromJson(c))).toList()
+        : null;
     return list;
   }
 }

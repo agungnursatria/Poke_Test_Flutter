@@ -40,7 +40,7 @@ class Connection {
       case ConnectivityResult.wifi:
         String wifiName;
         wifiName = await _connectivity.getWifiName();
-        isOffline = (wifiName != null) ? false : true;
+        isOffline = (wifiName != null && wifiName != '0x') ? false : true;
         break;
       case ConnectivityResult.mobile:
         isOffline = false;

@@ -1,15 +1,15 @@
-class Config_Development{
+class ConfigDevelopment{
   static const BASE_URL = 'https://raw.githubusercontent.com';
 }
 
-class Config_Staging{
+class ConfigStaging{
   static const BASE_URL = 'https://raw.githubusercontent.com';
 }
 
-class Config_Production{
+class ConfigProduction{
   static const BASE_URL = 'https://raw.githubusercontent.com';
 }
 
-class Config_Testing {
+class ConfigTesting {
   static const BASE_URL = 'https://raw.githubusercontent.com';
 }

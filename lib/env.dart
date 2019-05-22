@@ -25,11 +25,11 @@ class Env {
         EnvType.STAGING == environmentType) {
       Stetho.initialize();
     }
-    
+
     final InjectorContainer injector = InjectorContainer();
     injector.initDependencyInjection();
 
-    var application = injector.getAppStoreApplicationInstance();
+    var application = injector.getAppStoreInstance();
     await application.onCreate();
     runApp(AppComponent(application));
   }

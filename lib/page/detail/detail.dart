@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:test_app/utility/screen_helper.dart';
 import 'package:test_app/data/model/pokemon.dart';
 
 class PokeDetailArguments {
@@ -23,12 +23,12 @@ class PokeDetailState extends State<PokeDetailPage> {
   @override
   void initState() {
     super.initState();
-    _portraitModeOnly();
+    portraitModeOnly();
   }
 
   @override
   void dispose() {
-    _enableRotation();
+    enableRotation();
     super.dispose();
   }
 
@@ -127,22 +127,5 @@ class PokeDetailState extends State<PokeDetailPage> {
       ),
       body: bodyWidget(context),
     );
-  }
-
-  /// blocks rotation; sets orientation to: portrait
-  void _portraitModeOnly() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-  }
-
-  void _enableRotation() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
   }
 }
