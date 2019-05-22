@@ -6,7 +6,7 @@ import 'package:test_app/utility/db/database_helper.dart';
 import 'package:test_app/utility/framework/application.dart';
 import 'package:test_app/utility/log/log.dart';
 
-class AppStoreApplication implements Application {
+class AppStore implements Application {
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;
   // AppStoreAPIRepository appStoreAPIRepository;
