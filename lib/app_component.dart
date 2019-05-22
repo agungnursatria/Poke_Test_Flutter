@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/app_store.dart';
 import 'package:test_app/env.dart';
+import 'package:test_app/generated/i18n.dart';
 import 'package:test_app/page/detail/detail.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/home.dart';
 import 'package:test_app/utility/log/log.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class AppComponent extends StatefulWidget {
   final AppStore _application;
@@ -43,6 +45,12 @@ class _AppComponentState extends State<AppComponent> {
               Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
         ),
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         title: Env.value.appName,
         initialRoute: HomePage.PATH,
         routes: <String, WidgetBuilder>{

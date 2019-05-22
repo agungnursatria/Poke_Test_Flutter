@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:test_app/data/network/connection_status.dart';
+import 'package:test_app/generated/i18n.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/bloc/home_event.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';
@@ -148,17 +149,17 @@ class _HomePageState extends State<HomePage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 ),
-                title: new Text('Are you sure?'),
-                content: new Text('Do you want to exit an App'),
+                title: new Text(S.of(context).closeDialogTitle),
+                content: new Text(S.of(context).closeDialog),
                 actions: <Widget>[
                   FlatButton(
-                    child: Text("No"),
+                    child: Text(S.of(context).no),
                     onPressed: () {
                       Navigator.of(context).pop(false);
                     },
                   ),
                   FlatButton(
-                    child: Text("Yes"),
+                    child: Text(S.of(context).yes),
                     onPressed: () {
                       Navigator.of(context).pop(true);
                     },

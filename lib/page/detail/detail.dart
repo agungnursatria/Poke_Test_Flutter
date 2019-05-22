@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/generated/i18n.dart';
 import 'package:test_app/utility/screen_helper.dart';
 import 'package:test_app/data/model/pokemon.dart';
 
@@ -54,10 +55,10 @@ class PokeDetailState extends State<PokeDetailPage> {
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
-                  Text("Height: ${pokemon.height}"),
-                  Text("Weight: ${pokemon.weight}"),
+                  Text(S.of(context).height + pokemon.height),
+                  Text(S.of(context).weight + pokemon.weight),
                   Text(
-                    "Types",
+                    S.of(context).types,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Row(
@@ -69,7 +70,7 @@ class PokeDetailState extends State<PokeDetailPage> {
                             onSelected: (b) {}))
                         .toList(),
                   ),
-                  Text("Weakness",
+                  Text(S.of(context).weakness,
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -83,7 +84,7 @@ class PokeDetailState extends State<PokeDetailPage> {
                             onSelected: (b) {}))
                         .toList(),
                   ),
-                  Text("Next Evolution",
+                  Text(S.of(context).nextevolution,
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
