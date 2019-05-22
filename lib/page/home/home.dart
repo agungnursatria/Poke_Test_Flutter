@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:test_app/data/network/connection_status.dart';
-import 'package:test_app/generated/i18n.dart';
+import 'package:test_app/utility/language/i18n.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/bloc/home_event.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';

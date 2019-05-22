@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/generated/i18n.dart';
+import 'package:test_app/utility/language/i18n.dart';
 import 'package:test_app/utility/screen_helper.dart';
 import 'package:test_app/data/model/pokemon.dart';
 
