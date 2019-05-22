@@ -51,7 +51,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else {
       Log.info("Refresh Data");
       // Refresh data
-      HomeState curState = (currentState as PokemonLoaded).copyWith();
+      HomeState curState = currentState;
       try {
         yield PokemonLoading();
         final pokehub = await service.fetchData();
