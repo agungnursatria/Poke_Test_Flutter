@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/app_store_application.dart';
+import 'package:test_app/app_store.dart';
 import 'package:test_app/env.dart';
 import 'package:test_app/page/detail/detail.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
@@ -8,7 +8,7 @@ import 'package:test_app/page/home/home.dart';
 import 'package:test_app/utility/log/log.dart';
 
 class AppComponent extends StatefulWidget {
-  final AppStoreApplication _application;
+  final AppStore _application;
 
   AppComponent(this._application);
 
