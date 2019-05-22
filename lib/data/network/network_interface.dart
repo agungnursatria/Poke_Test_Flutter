@@ -5,7 +5,9 @@ import 'package:test_app/data/network/network_model.dart';
 
 
 class NetworkInterface {
-  static const String _baseUrl = BASE_URL;
+  
+  static const String _baseUrl = Config_Development.BASE_URL;
+  
   NetworkLibrary library = NetworkLibrary();
 
   NetworkInterface();
