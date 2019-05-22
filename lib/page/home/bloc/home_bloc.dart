@@ -25,8 +25,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     } else if (event is RemoveDataDB) {
       Log.info("Remove Data DB");
-      final pokehub = (currentState as PokemonLoaded).pokeHub;
       await service.removePokemonFromDB(event.pokemon);
+      final pokehub = (currentState as PokemonLoaded).pokeHub;
       pokehub.pokemon.removeWhere((p) => p.id == event.pokemon.id);
       yield PokemonLoaded(pokeHub: pokehub);
     } else if (event is FetchData) {
