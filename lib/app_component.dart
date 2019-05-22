@@ -32,8 +32,10 @@ class _AppComponentState extends State<AppComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      bloc: _homeBloc,
+    return BlocProviderTree(
+      blocProviders: [
+        BlocProvider<HomeBloc>(bloc: _homeBloc,),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.cyan,
