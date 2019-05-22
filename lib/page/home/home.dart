@@ -6,7 +6,7 @@ import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/bloc/home_event.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';
 import 'package:test_app/utility/log/log.dart';
-import 'package:test_app/widget/center_text.dart';
+import 'package:test_app/widget/atom/center_text.dart';
 import 'package:test_app/page/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -29,7 +29,7 @@ class AppDatabaseMigrationListener implements DatabaseMigrationListener {
     if (VERSION_1_0_0 == version) {
       Batch batch = db.batch();
       Queries.getQueriesCreate(
-        version - 1,
+        0,
         version,
       ).forEach((query) {
         batch.execute(query);

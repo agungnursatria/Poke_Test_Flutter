@@ -8,11 +8,10 @@ import 'package:test_app/page/home/home.dart';
 import 'package:test_app/utility/log/log.dart';
 
 class AppComponent extends StatefulWidget {
-
   final AppStoreApplication _application;
 
   AppComponent(this._application);
-  
+
   @override
   _AppComponentState createState() => _AppComponentState();
 }
@@ -21,7 +20,7 @@ class _AppComponentState extends State<AppComponent> {
   final HomeBloc _homeBloc = HomeBloc();
 
   @override
-  void dispose()async{
+  void dispose() async {
     Log.info('dispose');
     await widget._application.onTerminate();
 
@@ -47,8 +46,8 @@ class _AppComponentState extends State<AppComponent> {
         title: Env.value.appName,
         initialRoute: HomePage.PATH,
         routes: <String, WidgetBuilder>{
-          HomePage.PATH : (_) => HomePage(),
-          PokeDetailPage.PATH : (_) => PokeDetailPage(),
+          HomePage.PATH: (_) => HomePage(),
+          PokeDetailPage.PATH: (_) => PokeDetailPage(),
         },
       ),
     );
