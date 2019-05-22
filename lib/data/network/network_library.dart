@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:test_app/utility/log/DioLogger.dart';
 
 class NetworkLibrary {
-  // static final NetworkLibrary _singleton = new NetworkLibrary._();
-  // factory NetworkLibrary() => _singleton;
+  static final NetworkLibrary _singleton = new NetworkLibrary._();
+  factory NetworkLibrary() => _singleton;
 
-  NetworkLibrary();
+  NetworkLibrary._();
 
   static const String TAG = 'NetworkLibrary';
   
