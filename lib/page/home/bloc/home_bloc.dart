@@ -50,7 +50,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       yield PokemonRemoved();
     } else {
       Log.info("Refresh Data");
-      // Refresh data
       HomeState curState = currentState;
       try {
         yield PokemonLoading();
