@@ -4,9 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Helper class for the SharedPreferences package.
 ///
-class Prefs {
+class SharedPreferencesHelper {
+
   /// To save data as a key/value pair (it works with types: bool, int, double
-  /// String).
+  /// String, list).
   ///
   /// Usage:
   ///
@@ -30,9 +31,6 @@ class Prefs {
         break;
       case String:
         await prefs.setString(key, value as String);
-        break;
-      case List:
-        await prefs.setStringList(key, value as List<String>);
         break;
     }
   }
