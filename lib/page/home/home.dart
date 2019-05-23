@@ -9,7 +9,6 @@ import 'package:test_app/utility/log/log.dart';
 import 'package:test_app/widget/atom/center_text.dart';
 import 'package:test_app/page/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class HomePage extends StatefulWidget {
   static const String PATH = '/';
@@ -19,26 +18,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
   HomeBloc _homeBloc;
   Connection _connection;
 
   @override
   void initState() {
     super.initState();
-    _connection = Connection(onRefreshScreen: () {
-      if (_homeBloc.currentState is PokemonLoadError &&
-          !_connection.isOffline) {
-        _homeBloc.dispatch(FetchData());
-      }
-
-      if (_homeBloc.currentState is PokemonLoaded && !_connection.isOffline) {
-        if ((_homeBloc.currentState as PokemonLoaded).pokeHub.pokemon[0].num ==
-            '') {
-          _homeBloc.dispatch(FetchData());
-        }
-      }
-    });
+    _connection = Connection(onRefreshScreen: onRefreshScreen);
     _connection.initConnectivity(mounted);
     _connection.startListen();
 
@@ -176,5 +162,18 @@ class _HomePageState extends State<HomePage> {
               ),
         ) ??
         false;
+  }
+
+  onRefreshScreen() {
+    if (_homeBloc.currentState is PokemonLoadError && !_connection.isOffline) {
+      _homeBloc.dispatch(FetchData());
+    }
+
+    if (_homeBloc.currentState is PokemonLoaded && !_connection.isOffline) {
+      if ((_homeBloc.currentState as PokemonLoaded).pokeHub.pokemon[0].num ==
+          '') {
+        _homeBloc.dispatch(FetchData());
+      }
+    }
   }
 }

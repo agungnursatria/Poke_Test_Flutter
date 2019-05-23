@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:test_app/data/network/network_library.dart';
 import 'package:test_app/data/network/network_model.dart';
 import 'package:test_app/env.dart';
-import 'package:test_app/utility/log/log.dart';
 
 
 class NetworkInterface {
