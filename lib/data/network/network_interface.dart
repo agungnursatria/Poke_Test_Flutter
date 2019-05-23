@@ -18,9 +18,6 @@ class NetworkInterface {
   }) async {
     {
       baseUrl = baseUrl ?? Env.value.baseUrl;
-      Log.info(baseUrl);
-      Log.info(baseUrl + path);
-      Log.info('------------------');
       NetworkModel model;
       try {
         model = await library
