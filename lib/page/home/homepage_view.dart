@@ -34,7 +34,6 @@ class _HomePageViewState extends State<HomePageView> {
                     setState(() {
                       widget.pokeHub.pokemon.remove(poke);
                     });
-                    print("Remove : ${poke.name}");
                   },
                   child: Hero(
                     tag: poke.img,

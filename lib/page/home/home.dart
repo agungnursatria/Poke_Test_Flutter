@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
       onWillPop: _onBackPressed,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Poke App"),
+          title: Text(Env.value.appName),
           backgroundColor: Theme.of(context).primaryColor,
           actions: (Env.value.alice != null)
               ? <Widget>[
@@ -119,10 +119,8 @@ class _HomePageState extends State<HomePage> {
             FloatingActionButton(
               heroTag: 'fab_remove',
               onPressed: () {
-                print('Pressed');
                 if (_homeBloc.currentState is PokemonLoaded) {
                   _homeBloc.dispatch(RemoveData());
-                  print('Remove Data');
                 }
               },
               backgroundColor: Colors.white,

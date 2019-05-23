@@ -6,7 +6,6 @@ import 'package:test_app/utility/language/i18n.dart';
 import 'package:test_app/page/detail/detail.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/home.dart';
-import 'package:test_app/utility/log/log.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_app/utility/theme.dart';
 
@@ -24,9 +23,7 @@ class _AppComponentState extends State<AppComponent> {
 
   @override
   void dispose() async {
-    Log.info('dispose');
     await widget._application.onTerminate();
-
     _homeBloc.dispose();
     super.dispose();
   }

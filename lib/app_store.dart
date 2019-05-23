@@ -9,14 +9,12 @@ import 'package:test_app/utility/log/log.dart';
 class AppStore implements Application {
   DatabaseHelper _db;
   DBAppStoreRepository dbAppStoreRepository;
-  // AppStoreAPIRepository appStoreAPIRepository;
 
   @override
   Future<void> onCreate() async {
     _initLog();
     await _initDB();
     _initDBRepository();
-    // _initAPIRepository();
   }
 
   @override
@@ -30,19 +28,12 @@ class AppStore implements Application {
     DatabaseConfig databaseConfig = DatabaseConfig(
         Env.value.dbVersion, Env.value.dbName, migrationListener);
     _db = DatabaseHelper(databaseConfig: databaseConfig);
-    Log.info('DB name : ' + Env.value.dbName);
-//    await _db.deleteDB();
     await _db.open();
   }
 
   void _initDBRepository() {
     dbAppStoreRepository = DBAppStoreRepository(_db.database);
   }
-
-//   void _initAPIRepository(){
-//     APIProvider apiProvider = APIProvider();
-//     appStoreAPIRepository = AppStoreAPIRepository(apiProvider, dbAppStoreRepository);
-//   }
 
   void _initLog() {
     Log.init();
