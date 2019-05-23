@@ -16,7 +16,7 @@ class HomeService{
       if (responseModel.code == 200) {
         return PokeHub.fromJson(responseModel.response);
       } else {
-        throw FetchDataException(responseModel.error);
+        throw FetchDataException(message: responseModel.error);
       }
     });
     return pokehub;

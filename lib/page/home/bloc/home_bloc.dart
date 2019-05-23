@@ -41,7 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         yield PokemonLoaded(pokeHub: pokehub);
       } on FetchDataException catch (e) {
         Log.info("Failed Fetch Data Internet");
-        yield PokemonLoadError(message: e.getMessage);
+        yield PokemonLoadError(message: e.message);
       }
     } else if (event is RemoveData) {
       Log.info("Remove Data");
