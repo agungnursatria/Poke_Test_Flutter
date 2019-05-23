@@ -1,9 +1,9 @@
 import 'package:test_app/env.dart';
 
-main() => MainApp();
+main() => Production();
 
-class MainApp extends Env {
+class Production extends Env {
   final String appName = "Pokeapp";
-  EnvType environmentType = EnvType.DEVELOPMENT;
+  EnvType environmentType = EnvType.PRODUCTION;
   final String dbName = 'pokemon.db';
 }
