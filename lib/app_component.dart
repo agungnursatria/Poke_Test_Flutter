@@ -8,6 +8,7 @@ import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/home.dart';
 import 'package:test_app/utility/log/log.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:test_app/utility/theme.dart';
 
 class AppComponent extends StatefulWidget {
   final AppStore _application;
@@ -37,15 +38,7 @@ class _AppComponentState extends State<AppComponent> {
         BlocProvider<HomeBloc>(bloc: _homeBloc,),
       ],
       child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.cyan,
-          accentColor: Colors.black,
-          primaryTextTheme: TextTheme(
-            title: TextStyle(color: Colors.white),
-          ),
-          primaryIconTheme:
-              Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
-        ),
+        theme: theme,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           S.delegate,
