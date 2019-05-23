@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:test_app/env.dart';
-import 'package:test_app/utility/log/DioLogger.dart';
+import 'package:test_app/utility/log/dio_logger.dart';
 
 class NetworkLibrary {
   static final NetworkLibrary _singleton = new NetworkLibrary._();
