@@ -1,27 +1,26 @@
 import 'package:dio/dio.dart';
-import 'package:test_app/data/network/config/config.dart';
 import 'package:test_app/data/network/network_library.dart';
 import 'package:test_app/data/network/network_model.dart';
+import 'package:test_app/env.dart';
+import 'package:test_app/utility/log/log.dart';
 
 
 class NetworkInterface {
-  
-  /*  Config => ConfigDevelopement, 
-                ConfigStaging, 
-                ConfigProduction, 
-                ConfigTesting       */
-  static const String _baseUrl = ConfigDevelopment.BASE_URL;
 
   NetworkLibrary library = NetworkLibrary();
 
   NetworkInterface();
 
   Future<NetworkModel> requestGet({
-    String baseUrl = _baseUrl,
+    String baseUrl = null,
     String path,
     Map<String, dynamic> queryParameters,
   }) async {
     {
+      baseUrl = baseUrl ?? Env.value.baseUrl;
+      Log.info(baseUrl);
+      Log.info(baseUrl + path);
+      Log.info('------------------');
       NetworkModel model;
       try {
         model = await library

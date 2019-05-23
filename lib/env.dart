@@ -11,11 +11,13 @@ class Env {
 
   String appName;
   EnvType environmentType = EnvType.DEVELOPMENT;
+  String baseUrl;
   Alice alice;
 
   // Database Config
   int dbVersion = 1;
   String dbName;
+
 
   Env() {
     value = this;
