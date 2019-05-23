@@ -12,7 +12,7 @@ class NetworkInterface {
   NetworkInterface();
 
   Future<NetworkModel> requestGet({
-    String baseUrl = null,
+    String baseUrl,
     String path,
     Map<String, dynamic> queryParameters,
   }) async {

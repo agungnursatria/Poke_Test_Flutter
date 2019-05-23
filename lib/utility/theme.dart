@@ -26,13 +26,13 @@ ThemeData _buildTheme() {
   );
 }
 
-AppBarTheme _buildAppBarTheme(AppBarTheme base) => base.copyWith(
-      elevation: headerBarElevation,
-      color: headerBarColor,
-      brightness: headerBarBrightness,
-      iconTheme: headerBarIconTheme,
-      textTheme: headerBarTextTheme,
-    );
+// AppBarTheme _buildAppBarTheme(AppBarTheme base) => base.copyWith(
+//       elevation: headerBarElevation,
+//       color: headerBarColor,
+//       brightness: headerBarBrightness,
+//       iconTheme: headerBarIconTheme,
+//       textTheme: headerBarTextTheme,
+//     );
 
 TextTheme _buildTextTheme(TextTheme base) => base
     .apply(
@@ -51,28 +51,28 @@ TextTheme _buildTextTheme(TextTheme base) => base
       ),
     );
 
-TextTheme _buildPrimaryTextTheme(TextTheme base) => base
-    .copyWith(
-      title: headerBarTitleStyle,
-    )
-    .apply(
-      fontFamily: fontFamilyPrimary,
-    );
+// TextTheme _buildPrimaryTextTheme(TextTheme base) => base
+//     .copyWith(
+//       title: headerBarTitleStyle,
+//     )
+//     .apply(
+//       fontFamily: fontFamilyPrimary,
+//     );
 
-ButtonThemeData _buildButtonTheme(ButtonThemeData base) => base.copyWith(
-      shape: buttonShape,
-      padding: buttonPadding,
-      buttonColor: colorPrimary,
-      disabledColor: buttonDisabledColor,
-    );
+// ButtonThemeData _buildButtonTheme(ButtonThemeData base) => base.copyWith(
+//       shape: buttonShape,
+//       padding: buttonPadding,
+//       buttonColor: colorPrimary,
+//       disabledColor: buttonDisabledColor,
+//     );
 
-ChipThemeData _buildChipTheme(ChipThemeData base) => base.copyWith(
-      labelStyle: const TextStyle(
-        color: fontColorOnDark,
-      ),
-      backgroundColor: colorPrimary,
-    );
+// ChipThemeData _buildChipTheme(ChipThemeData base) => base.copyWith(
+//       labelStyle: const TextStyle(
+//         color: fontColorOnDark,
+//       ),
+//       backgroundColor: colorPrimary,
+//     );
 
-IconThemeData _buildIconThemeData(IconThemeData base) => base.copyWith(
-      size: iconSizeLarge,
-    );
+// IconThemeData _buildIconThemeData(IconThemeData base) => base.copyWith(
+//       size: iconSizeLarge,
+//     );

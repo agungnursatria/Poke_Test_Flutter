@@ -36,7 +36,7 @@ dependencies:
   logging: ^0.11.3+2
   alice: ^0.0.4
   shared_preferences: ^0.5.2+1
-  firebase_messaging: ^0.2.1
+  firebase_messaging: 0.2.1
 
 
 
