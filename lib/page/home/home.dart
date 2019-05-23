@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:test_app/data/network/connection_status.dart';
+import 'package:test_app/env.dart';
 import 'package:test_app/utility/language/i18n.dart';
 import 'package:test_app/page/home/bloc/home_import.dart';
 import 'package:test_app/utility/log/log.dart';
@@ -58,6 +59,16 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text("Poke App"),
           backgroundColor: Theme.of(context).primaryColor,
+          actions: (Env.value.alice != null)
+              ? <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.info),
+                    onPressed: () {
+                      Env.value.alice.showInspector();
+                    },
+                  )
+                ]
+              : null,
         ),
         body: BlocBuilder(
           bloc: _homeBloc,

@@ -35,9 +35,14 @@ class _AppComponentState extends State<AppComponent> {
   Widget build(BuildContext context) {
     return BlocProviderTree(
       blocProviders: [
-        BlocProvider<HomeBloc>(bloc: _homeBloc,),
+        BlocProvider<HomeBloc>(
+          bloc: _homeBloc,
+        ),
       ],
       child: MaterialApp(
+        navigatorKey: (Env.value.alice != null)
+            ? Env.value.alice.getNavigatorKey()
+            : null,
         theme: theme,
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
