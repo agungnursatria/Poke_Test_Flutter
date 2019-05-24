@@ -1,6 +1,5 @@
 import 'package:kiwi/kiwi.dart';
 import 'package:test_app/app_store.dart';
-import 'package:test_app/data/db/db_appstore_repository.dart';
 import 'package:test_app/data/network/network_interface.dart';
 import 'package:test_app/data/network/network_library.dart';
 import 'package:test_app/page/home/service/home_service.dart';
@@ -13,8 +12,7 @@ class InjectorContainer {
     container.registerInstance(NetworkLibrary());
     container.registerInstance(AppStore());
     container.registerFactory((c) => NetworkInterface(c.resolve<NetworkLibrary>()));
-    container.registerFactory((c) => c.resolve<AppStore>().dbAppStoreRepository);
-    container.registerFactory((c) => HomeService(c.resolve<NetworkInterface>(), c.resolve<DBAppStoreRepository>()));
+    container.registerFactory((c) => HomeService(c.resolve<NetworkInterface>(), c.resolve<AppStore>().dbAppStoreRepository));
   }
 
   HomeService getHomeServiceInstance(){

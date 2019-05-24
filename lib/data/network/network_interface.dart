@@ -40,12 +40,12 @@ class NetworkInterface {
       model = NetworkModel(
           code: e.response.statusCode ?? 0,
           response: Map(),
-          error: _errorMessageBasedType(e));
+          error: e.response.data['message']) ?? _errorMessageBasedType(e);
     } else
       model = NetworkModel(
           code: 0,
           response: Map(),
-          error: _errorMessageBasedType(e));
+          error: e.response.data['message']) ?? _errorMessageBasedType(e);
     return model;
   }
 
