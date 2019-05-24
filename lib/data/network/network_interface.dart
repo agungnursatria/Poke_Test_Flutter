@@ -6,9 +6,9 @@ import 'package:test_app/env.dart';
 
 class NetworkInterface {
 
-  NetworkLibrary library = NetworkLibrary();
+  NetworkLibrary library;
 
-  NetworkInterface();
+  NetworkInterface(this.library);
 
   Future<NetworkModel> requestGet({
     String baseUrl,

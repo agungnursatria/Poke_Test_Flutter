@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:test_app/utility/connection/connection_status.dart';
 import 'package:test_app/env.dart';
-import 'package:test_app/utility/language/i18n.dart';
+import 'package:test_app/utility/localization/i18n.dart';
 import 'package:test_app/page/home/bloc/home_import.dart';
 import 'package:test_app/utility/log/log.dart';
 import 'package:test_app/widget/atom/center_text.dart';

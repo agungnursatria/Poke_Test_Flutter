@@ -5,10 +5,7 @@ import 'package:test_app/env.dart';
 import 'package:test_app/utility/log/dio_logger.dart';
 
 class NetworkLibrary {
-  static final NetworkLibrary _singleton = new NetworkLibrary._();
-  factory NetworkLibrary() => _singleton;
-
-  NetworkLibrary._();
+  NetworkLibrary();
 
   static const String TAG = 'NetworkLibrary';
 
