@@ -15,7 +15,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     InjectorContainer injector = InjectorContainer();
     HomeService service = injector.getHomeServiceInstance();
     if (event is FetchDataDB) {
-      Log.info("Fetch Data DB");
       yield PokemonLoading();
       final pokehub = await service.fetchDB();
       if (pokehub.pokemon == null) {
@@ -24,13 +23,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         yield PokemonLoaded(pokeHub: pokehub);
       }
     } else if (event is RemoveDataDB) {
-      Log.info("Remove Data DB");
       await service.removePokemonFromDB(event.pokemon);
       final pokehub = (currentState as PokemonLoaded).pokeHub;
       pokehub.pokemon.removeWhere((p) => p.id == event.pokemon.id);
       yield PokemonLoaded(pokeHub: pokehub);
     } else if (event is FetchData) {
-      Log.info("Fetch Data Internet");
       try {
         yield PokemonLoading();
         final pokehub = await service.fetchData();
@@ -40,16 +37,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
         yield PokemonLoaded(pokeHub: pokehub);
       } on FetchDataException catch (e) {
-        Log.info("Failed Fetch Data Internet");
         yield PokemonLoadError(message: e.message);
       }
     } else if (event is RemoveData) {
-      Log.info("Remove Data");
       yield PokemonLoading();
       await service.clearDB();
       yield PokemonRemoved();
     } else {
-      Log.info("Refresh Data");
       HomeState curState = currentState;
       try {
         yield PokemonLoading();
@@ -60,7 +54,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
         yield PokemonLoaded(pokeHub: pokehub);
       } catch (_) {
-        Log.info("Failed Refresh Data");
         yield curState;
       }
     }
