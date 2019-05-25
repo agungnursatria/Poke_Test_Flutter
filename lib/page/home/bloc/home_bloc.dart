@@ -4,7 +4,6 @@ import 'package:test_app/page/home/service/home_service.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';
 import 'package:test_app/di/injector.dart';
 import 'package:test_app/utility/exception/fetch_data_exception.dart';
-import 'package:test_app/utility/log/log.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
@@ -15,7 +14,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     InjectorContainer injector = InjectorContainer();
     HomeService service = injector.getHomeServiceInstance();
     if (event is FetchDataDB) {
-      Log.info('Fetch Data DB');
       yield PokemonLoading();
       final pokehub = await service.fetchDB();
       if (pokehub.pokemon == null) {
@@ -29,7 +27,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       pokehub.pokemon.removeWhere((p) => p.id == event.pokemon.id);
       yield PokemonLoaded(pokeHub: pokehub);
     } else if (event is FetchData) {
-      Log.info('Fetch Data internet');
       try {
         yield PokemonLoading();
         final pokehub = await service.fetchData();
