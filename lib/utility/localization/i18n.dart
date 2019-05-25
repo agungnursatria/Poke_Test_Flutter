@@ -28,6 +28,8 @@ class S implements WidgetsLocalizations {
   String get yes => "Yes";
   String get closeDialog => "Do you want to exit the App";
   String get closeDialogTitle => "Are you sure?";
+  String get emptypokemon => "No Pokemon Here";
+  String get retringIn5Second => "Retrying in 5 seconds";
 }
 
 class $id extends S {
@@ -54,6 +56,10 @@ class $id extends S {
   String get closeDialog => "Apakah anda ingin menutup aplikasi ini?";
   @override
   String get closeDialogTitle => "Anda yakin?";
+  @override
+  String get emptypokemon => "Tidak ada pokemon disini";
+  @override
+  String get retringIn5Second => "Mencoba kembali dalam 5 detik";
 }
 
 class $en extends S {

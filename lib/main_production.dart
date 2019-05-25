@@ -1,11 +1,8 @@
-import 'package:test_app/env.dart';
+import 'package:flutter/material.dart';
+import 'package:test_app/app_component.dart';
+import 'package:test_app/config/config.dart';
 
-main() => Production();
-
-class Production extends Env {
-  final String appName = "Pokeapp";
-  EnvType environmentType = EnvType.PRODUCTION;
-  final String baseUrl = 'https://raw.githubusercontent.com';
-  
-  final String dbName = 'pokemon.db';
+void main() {
+  Config.isProduction();
+  runApp(AppComponent());
 }

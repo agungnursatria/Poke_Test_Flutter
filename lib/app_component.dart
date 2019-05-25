@@ -1,60 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stetho/flutter_stetho.dart';
 import 'package:test_app/app_store.dart';
-import 'package:test_app/env.dart';
-import 'package:test_app/utility/localization/i18n.dart';
-import 'package:test_app/page/detail/detail.dart';
-import 'package:test_app/page/home/bloc/home_bloc.dart';
+import 'package:test_app/config/config.dart';
+import 'package:test_app/data/model/env.dart';
+import 'package:test_app/di/injector.dart';
 import 'package:test_app/page/home/home.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:test_app/utility/theme.dart';
+import 'package:test_app/route.dart';
 
 class AppComponent extends StatefulWidget {
-  final AppStore _application;
-
-  AppComponent(this._application);
-
   @override
   _AppComponentState createState() => _AppComponentState();
 }
 
 class _AppComponentState extends State<AppComponent> {
-  final HomeBloc _homeBloc = HomeBloc();
+  AppStore application;
 
   @override
-  void dispose() async {
-    await widget._application.onTerminate();
-    _homeBloc.dispose();
+  void initState() {
+    super.initState();
+    if (Config.environmentType == EnvType.DEVELOPMENT ||
+        Config.environmentType == EnvType.STAGING ||
+        Config.environmentType == EnvType.TESTING) {
+      Stetho.initialize();
+    }
+
+    final InjectorContainer injector = InjectorContainer();
+    injector.initDependencyInjection();
+
+    application = injector.getAppStoreInstance();
+    application.onCreate();
+  }
+
+  @override
+  void dispose() {
     super.dispose();
+    application.onTerminate();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProviderTree(
-      blocProviders: [
-        BlocProvider<HomeBloc>(
-          bloc: _homeBloc,
-        ),
-      ],
-      child: MaterialApp(
-        navigatorKey: (Env.value.alice != null)
-            ? Env.value.alice.getNavigatorKey()
-            : null,
-        theme: theme,
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        title: Env.value.appName,
-        initialRoute: HomePage.PATH,
-        routes: <String, WidgetBuilder>{
-          HomePage.PATH: (_) => HomePage(),
-          PokeDetailPage.PATH: (_) => PokeDetailPage(),
-        },
-      ),
-    );
+    return Routes(initialRoute: HomePage.PATH);
   }
 }

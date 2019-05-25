@@ -1,11 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:test_app/config/config.dart';
+import 'package:test_app/page/home/bloc/home_bloc.dart';
+import 'package:test_app/page/home/bloc/home_event.dart';
+import 'package:test_app/page/home/bloc/home_state.dart';
 import 'package:test_app/utility/connection/connection_status.dart';
-import 'package:test_app/env.dart';
 import 'package:test_app/utility/localization/i18n.dart';
-import 'package:test_app/page/home/bloc/home_import.dart';
-import 'package:test_app/utility/log/log.dart';
 import 'package:test_app/widget/atom/center_text.dart';
 import 'package:test_app/page/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     _connection.initConnectivity(mounted);
     _connection.startListen();
 
-    _homeBloc = BlocProvider.of<HomeBloc>(context);
+    _homeBloc = HomeBloc();
     _homeBloc.dispatch(FetchDataDB());
   }
 
@@ -44,14 +45,14 @@ class _HomePageState extends State<HomePage> {
       onWillPop: _onBackPressed,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(Env.value.appName),
+          title: Text(Config.appName),
           backgroundColor: Theme.of(context).primaryColor,
-          actions: (Env.value.alice != null)
+          actions: (Config.alice != null)
               ? <Widget>[
                   IconButton(
                     icon: Icon(Icons.info),
                     onPressed: () {
-                      Env.value.alice.showInspector();
+                      Config.alice.showInspector();
                     },
                   )
                 ]
@@ -64,24 +65,16 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
             }
             if (state is PokemonLoadError) {
-              Log.info("Connection is offline => ${_connection.isOffline}");
               if (_connection.isOffline) {
-                return CenterText(
-                  text: state.message,
-                );
+                return CenterText(text: state.message,);
               } else {
-                Timer(Duration(seconds: 5),
-                    () => _homeBloc.dispatch(FetchData()));
-                return CenterText(
-                  text: "${state.message}\n\nRetrying in 5 seconds",
-                );
+                Timer(Duration(seconds: 5), () => _homeBloc.dispatch(FetchData()));
+                return CenterText(text: "${state.message}\n\n${S.of(context).retringIn5Second}",);
               }
             }
             if (state is PokemonLoaded) {
               return (state.pokeHub.pokemon.isEmpty)
-                  ? CenterText(
-                      text: "No pokemon here",
-                    )
+                  ? CenterText(text: S.of(context).emptypokemon,)
                   : HomePageView(
                       pokeHub: state.pokeHub,
                       onLongpress: (poke) =>
@@ -89,9 +82,7 @@ class _HomePageState extends State<HomePage> {
                     );
             }
             if (state is PokemonRemoved) {
-              return CenterText(
-                text: "No pokemon here",
-              );
+              return CenterText(text: S.of(context).emptypokemon,);
             }
             if (state is PokemonDBEmpty) {
               _homeBloc.dispatch(FetchData());
@@ -160,8 +151,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-        ) ??
-        false;
+        );
   }
 
   onRefreshScreen() {

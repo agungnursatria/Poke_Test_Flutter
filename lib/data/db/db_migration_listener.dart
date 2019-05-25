@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:test_app/utility/db/database_helper.dart';
 import 'package:test_app/utility/log/log.dart';
 
-class AppDatabaseMigrationListener implements DatabaseMigrationListener {
+class DBMigrationListener implements DatabaseMigrationListener {
   static const int VERSION_1_0_0 = 1;
 
   @override

@@ -1,10 +1,10 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:test_app/data/model/pokemon.dart';
 
-class DBAppStoreRepository {
+class DBRepository {
   Database _database;
 
-  DBAppStoreRepository(this._database);
+  DBRepository(this._database);
 
   Future<int> insert(Pokemon poke) async {
     PokemonDB pokemonDB = poke.toDB();

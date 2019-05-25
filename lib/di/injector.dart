@@ -12,7 +12,7 @@ class InjectorContainer {
     container.registerInstance(NetworkLibrary());
     container.registerInstance(AppStore());
     container.registerFactory((c) => NetworkInterface(c.resolve<NetworkLibrary>()));
-    container.registerFactory((c) => HomeService(c.resolve<NetworkInterface>(), c.resolve<AppStore>().dbAppStoreRepository));
+    container.registerFactory((c) => HomeService(c.resolve<NetworkInterface>(), c.resolve<AppStore>().dbRepository));
   }
 
   HomeService getHomeServiceInstance(){
