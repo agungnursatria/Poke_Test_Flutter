@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/app_component.dart';
+import 'package:test_app/app.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/di/injector.dart';
 import 'package:test_app/utility/framework/application.dart';
@@ -13,5 +13,5 @@ Future main() async {
   Application application = injector.getAppStoreInstance();
   await application.onCreate();
   
-  runApp(AppComponent(application: application,));
+  runApp(App(application: application,));
 }

@@ -6,15 +6,15 @@ import 'package:test_app/data/model/env.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/page/home/home.dart';
 
-class AppComponent extends StatefulWidget {
+class App extends StatefulWidget {
   AppStore application;
-  AppComponent({@required this.application}) : assert(application != null);
+  App({@required this.application}) : assert(application != null);
 
   @override
-  _AppComponentState createState() => _AppComponentState();
+  _AppState createState() => _AppState();
 }
 
-class _AppComponentState extends State<AppComponent> {
+class _AppState extends State<App> {
 
   @override
   void initState() {
