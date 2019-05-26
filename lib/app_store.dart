@@ -1,5 +1,5 @@
 import 'package:logging/logging.dart';
-import 'package:test_app/config/config.dart';
+import 'package:test_app/environment/env.dart';
 import 'package:test_app/data/db/db_migration_listener.dart';
 import 'package:test_app/data/db/db_repo.dart';
 import 'package:test_app/data/model/env.dart';
@@ -27,7 +27,7 @@ class AppStore implements Application {
     DBMigrationListener migrationListener =
         DBMigrationListener();
     DatabaseConfig databaseConfig = DatabaseConfig(
-        Config.dbVersion, Config.dbName, migrationListener);
+        Env.dbVersion, Env.dbName, migrationListener);
     _db = DatabaseHelper(databaseConfig: databaseConfig);
     await _db.open();
   }
@@ -39,7 +39,7 @@ class AppStore implements Application {
   void _initLog() {
     Log.init();
 
-    switch (Config.environmentType) {
+    switch (Env.environmentType) {
       case EnvType.TESTING:
       case EnvType.DEVELOPMENT:
       case EnvType.STAGING:

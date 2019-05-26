@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/utility/styles.dart';
+import 'package:test_app/config/styles.dart';
 
 final ThemeData theme = _buildTheme();
 

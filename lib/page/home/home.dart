@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:test_app/config/config.dart';
+import 'package:test_app/environment/env.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/bloc/home_event.dart';
 import 'package:test_app/page/home/bloc/home_state.dart';
 import 'package:test_app/utility/connection/connection_status.dart';
-import 'package:test_app/utility/localization/i18n.dart';
+import 'package:test_app/config/localization/i18n.dart';
 import 'package:test_app/widget/atom/center_text.dart';
 import 'package:test_app/page/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,14 +45,14 @@ class _HomePageState extends State<HomePage> {
       onWillPop: _onBackPressed,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(Config.appName),
+          title: Text(Env.appName),
           backgroundColor: Theme.of(context).primaryColor,
-          actions: (Config.alice != null)
+          actions: (Env.alice != null)
               ? <Widget>[
                   IconButton(
                     icon: Icon(Icons.info),
                     onPressed: () {
-                      Config.alice.showInspector();
+                      Env.alice.showInspector();
                     },
                   )
                 ]

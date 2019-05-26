@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:test_app/config/config.dart';
 import 'package:test_app/data/network/network_library.dart';
 import 'package:test_app/data/network/network_model.dart';
+import 'package:test_app/environment/env.dart';
 
 
 class NetworkInterface {
@@ -16,7 +16,7 @@ class NetworkInterface {
     Map<String, dynamic> queryParameters,
   }) async {
     {
-      baseUrl = baseUrl ?? Config.baseUrl;
+      baseUrl = baseUrl ?? Env.baseUrl;
       NetworkModel model;
       try {
         model = await library

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:test_app/config/config.dart';
+import 'package:test_app/environment/env.dart';
 import 'package:test_app/utility/log/dio_logger.dart';
 
 class NetworkLibrary {
@@ -33,8 +33,8 @@ class NetworkLibrary {
       }),
     );
 
-    if (Config.alice != null) {
-      dio.interceptors.add(Config.alice.getDioInterceptor());
+    if (Env.alice != null) {
+      dio.interceptors.add(Env.alice.getDioInterceptor());
     }
 
     return dio;
