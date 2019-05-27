@@ -12,7 +12,7 @@ import 'package:test_app/page/home/homepage_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
-  static const String PATH = '/';
+  static const String PATH = '/home';
 
   @override
   _HomePageState createState() => _HomePageState();

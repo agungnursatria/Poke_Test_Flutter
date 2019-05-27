@@ -5,6 +5,7 @@ import 'package:test_app/environment/env.dart';
 import 'package:test_app/page/detail/detail.dart';
 import 'package:test_app/page/home/home.dart';
 import 'package:test_app/config/localization/i18n.dart';
+import 'package:test_app/page/landing/landing.dart';
 
 class Routes extends StatelessWidget {
   String initialRoute;
@@ -25,6 +26,7 @@ class Routes extends StatelessWidget {
       title: Env.appName,
       initialRoute: initialRoute,
       routes: <String, WidgetBuilder>{
+        Landing.PATH: (_) => Landing(),
         HomePage.PATH: (_) => HomePage(),
         PokeDetailPage.PATH: (_) => PokeDetailPage(),
       },
