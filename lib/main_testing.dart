@@ -4,7 +4,6 @@ import 'package:test_app/app.dart';
 import 'package:test_app/data/model/env.dart';
 import 'package:test_app/di/injector.dart';
 import 'package:test_app/environment/env.dart';
-import 'package:test_app/page/home/home.dart';
 
 void main() {
   Env.isTesting();
@@ -18,7 +17,5 @@ void main() {
   final InjectorContainer injector = InjectorContainer();
   injector.initDependencyInjection();
   
-  runApp(App(
-    initialRoute: HomePage.PATH,
-  ));
+  runApp(App());
 }
