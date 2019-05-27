@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _connection.dispose();
+    _homeBloc.dispose();
     super.dispose();
   }
 
