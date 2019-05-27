@@ -5,7 +5,7 @@ import 'package:test_app/data/network/network_interface.dart';
 
 class HomeService{
   final NetworkInterface networkInterface;
-  DBRepository _dbRepository; 
+  final DBRepository _dbRepository; 
 
   HomeService(this.networkInterface, this._dbRepository);
 
