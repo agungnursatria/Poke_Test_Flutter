@@ -2,7 +2,6 @@ import 'package:logging/logging.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/data/db/db_migration_listener.dart';
 import 'package:test_app/data/db/db_repo.dart';
-import 'package:test_app/data/model/env.dart';
 import 'package:test_app/utility/db/database_helper.dart';
 import 'package:test_app/utility/framework/application.dart';
 import 'package:test_app/utility/log/log.dart';

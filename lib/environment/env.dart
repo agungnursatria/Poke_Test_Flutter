@@ -1,6 +1,6 @@
 import 'package:alice/alice.dart';
-import 'package:test_app/data/model/env.dart';
 
+enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, TESTING }
 class Env{
   static String appName;
   static EnvType environmentType;
