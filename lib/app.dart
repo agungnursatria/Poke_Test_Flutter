@@ -3,6 +3,9 @@ import 'package:test_app/config/route.dart';
 import 'package:test_app/page/landing/landing.dart';
 
 class App extends StatefulWidget {
+  String initialRoute;
+  App({this.initialRoute = Landing.PATH});
+  
   @override
   _AppState createState() => _AppState();
 }
@@ -10,6 +13,6 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {  
   @override
   Widget build(BuildContext context) {
-    return Routes(initialRoute: Landing.PATH);
+    return Routes(initialRoute: widget.initialRoute);
   }
 }

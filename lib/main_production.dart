@@ -7,12 +7,15 @@ import 'package:test_app/environment/env.dart';
 
 void main() {
   Env.isProduction();
+
   if (Env.environmentType == EnvType.DEVELOPMENT ||
       Env.environmentType == EnvType.STAGING ||
       Env.environmentType == EnvType.TESTING) {
     Stetho.initialize();
   }
+
   final InjectorContainer injector = InjectorContainer();
   injector.initDependencyInjection();
+  
   runApp(App());
 }

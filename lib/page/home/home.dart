@@ -59,37 +59,53 @@ class _HomePageState extends State<HomePage> {
                 ]
               : null,
         ),
-        body: BlocBuilder(
+        body: BlocListener(
           bloc: _homeBloc,
-          builder: (BuildContext context, HomeState state) {
-            if (state is PokemonUninitialized || state is PokemonLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (state is PokemonLoadError) {
-              if (_connection.isOffline) {
-                return CenterText(text: state.message,);
-              } else {
-                Timer(Duration(seconds: 5), () => _homeBloc.dispatch(FetchData()));
-                return CenterText(text: "${state.message}\n\n${S.of(context).retringIn5Second}",);
-              }
-            }
-            if (state is PokemonLoaded) {
-              return (state.pokeHub.pokemon.isEmpty)
-                  ? CenterText(text: S.of(context).emptypokemon,)
-                  : HomePageView(
-                      pokeHub: state.pokeHub,
-                      onLongpress: (poke) =>
-                          _homeBloc.dispatch(RemoveDataDB(pokemon: poke)),
-                    );
-            }
-            if (state is PokemonRemoved) {
-              return CenterText(text: S.of(context).emptypokemon,);
-            }
-            if (state is PokemonDBEmpty) {
-              _homeBloc.dispatch(FetchData());
-              return Container();
+          listener: (BuildContext context, HomeState state) {
+            if (state is PokemonLoadError && !_connection.isOffline) {
+              Timer(Duration(seconds: 5), () => _homeBloc.dispatch(FetchData()));
             }
           },
+          child: BlocBuilder(
+            bloc: _homeBloc,
+            builder: (BuildContext context, HomeState state) {
+              if (state is PokemonUninitialized || state is PokemonLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (state is PokemonLoadError) {
+                if (_connection.isOffline) {
+                  return CenterText(
+                    text: state.message,
+                  );
+                } else {
+                  return CenterText(
+                    text:
+                        "${state.message}\n\n${S.of(context).retringIn5Second}",
+                  );
+                }
+              }
+              if (state is PokemonLoaded) {
+                return (state.pokeHub.pokemon.isEmpty)
+                    ? CenterText(
+                        text: S.of(context).emptypokemon,
+                      )
+                    : HomePageView(
+                        pokeHub: state.pokeHub,
+                        onLongpress: (poke) =>
+                            _homeBloc.dispatch(RemoveDataDB(pokemon: poke)),
+                      );
+              }
+              if (state is PokemonRemoved) {
+                return CenterText(
+                  text: S.of(context).emptypokemon,
+                );
+              }
+              if (state is PokemonDBEmpty) {
+                _homeBloc.dispatch(FetchData());
+                return Container();
+              }
+            },
+          ),
         ),
         floatingActionButton: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,29 +146,29 @@ class _HomePageState extends State<HomePage> {
 
   Future<bool> _onBackPressed() {
     return showDialog(
-          context: context,
-          builder: (context) => new AlertDialog(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                ),
-                title: new Text(S.of(context).closeDialogTitle),
-                content: new Text(S.of(context).closeDialog),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text(S.of(context).no),
-                    onPressed: () {
-                      Navigator.of(context).pop(false);
-                    },
-                  ),
-                  FlatButton(
-                    child: Text(S.of(context).yes),
-                    onPressed: () {
-                      Navigator.of(context).pop(true);
-                    },
-                  ),
-                ],
+      context: context,
+      builder: (context) => new AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            title: new Text(S.of(context).closeDialogTitle),
+            content: new Text(S.of(context).closeDialog),
+            actions: <Widget>[
+              FlatButton(
+                child: Text(S.of(context).no),
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
               ),
-        );
+              FlatButton(
+                child: Text(S.of(context).yes),
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+              ),
+            ],
+          ),
+    );
   }
 
   onRefreshScreen() {
