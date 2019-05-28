@@ -18,7 +18,6 @@ class Env{
     dbName = 'pokemon_dev.db';
     dbVersion = 1;
     baseUrl = 'https://raw.githubusercontent.com';
-    alice = Alice(showNotification: true);
   }
 
   static void isProduction() {
@@ -35,7 +34,6 @@ class Env{
     dbName = 'pokemon_staging.db';
     dbVersion = 1;
     baseUrl = 'https://raw.githubusercontent.com';
-    alice = Alice(showNotification: true);
   }
 
   static void isTesting() {
@@ -44,7 +42,8 @@ class Env{
     dbName = 'pokemon_testing.db';
     dbVersion = 1;
     baseUrl = 'https://raw.githubusercontent.com';
-    alice = Alice(showNotification: true);
   }
+
+  static bool isDebug() => environmentType != EnvType.PRODUCTION;
 
 }
