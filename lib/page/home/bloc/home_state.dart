@@ -10,7 +10,7 @@ class PokemonLoaded extends HomeState{
 
   PokemonLoaded({
     this.pokeHub
-  });
+  }) : super([pokeHub]);
 
   PokemonLoaded copyWith({
     PokeHub pokeHub
@@ -28,5 +28,5 @@ class PokemonDBEmpty extends HomeState{}
 class PokemonLoadError extends HomeState{
   String message;
 
-  PokemonLoadError({this.message});
+  PokemonLoadError({this.message}) : super([message]);
 }
