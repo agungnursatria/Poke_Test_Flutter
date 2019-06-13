@@ -38,12 +38,12 @@ class NetworkInterface {
   NetworkModel handleError(DioError e, NetworkModel model) {
     if (e.response != null) {
       model = NetworkModel(
-          code: e.response.statusCode ?? 0,
+          code: e.response.statusCode ?? _errorStatusCodeBasedType(e),
           response: Map(),
           error: e.response.data['message']) ?? _errorMessageBasedType(e);
     } else
       model = NetworkModel(
-        code: 0,
+        code: _errorStatusCodeBasedType(e),
         response: Map(),
         error: _errorMessageBasedType(e)
       );
@@ -56,6 +56,35 @@ class NetworkInterface {
       return "application/json";
     });
     return headers;
+  }
+
+  int _errorStatusCodeBasedType(Error error) {
+    int code = 0;
+    if (error is DioError) {
+      switch (error.type) {
+        case DioErrorType.CANCEL:
+          code = 400;
+          break;
+        case DioErrorType.CONNECT_TIMEOUT:
+          code = 408;
+          break;
+        case DioErrorType.DEFAULT:
+          code = 503;
+          break;
+        case DioErrorType.RECEIVE_TIMEOUT:
+          code = 500;
+          break;
+        case DioErrorType.RESPONSE:
+          code = 400;
+          break;
+        case DioErrorType.SEND_TIMEOUT:
+          code = 500;
+          break;
+      }
+    } else {
+      code = 503;
+    }
+    return code;
   }
 
   String _errorMessageBasedType(Error error) {
