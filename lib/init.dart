@@ -1,6 +1,5 @@
 import 'package:alice/alice.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_stetho/flutter_stetho.dart';
 import 'package:test_app/di/injector.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/utility/framework/application.dart';
@@ -18,11 +17,6 @@ class Init extends StatelessWidget {
 
   Future init() async {
     configENV();
-
-    if (Env.isDebug()) {
-      Stetho.initialize();
-      Env.alice = Alice(showNotification: true);
-    }
 
     final InjectorContainer injector = InjectorContainer();
     injector.initDependencyInjection();

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:test_app/di/injector.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/utility/log/dio_logger.dart';
 
@@ -11,7 +12,7 @@ class NetworkLibrary {
 
   Dio buildStandardDio<T>(Map<String, String> headers) {
     var dio = Dio();
-    
+
     dio.interceptors.add(
       InterceptorsWrapper(onRequest: (RequestOptions options) {
         options.headers.addAll(headers);
@@ -33,8 +34,10 @@ class NetworkLibrary {
       }),
     );
 
-    if (Env.alice != null) {
-      dio.interceptors.add(Env.alice.getDioInterceptor());
+    if (Env.isDebug()) {
+      InjectorContainer injectorContainer = InjectorContainer();
+      dio.interceptors
+          .add(injectorContainer.getAliceInstance().getDioInterceptor());
     }
 
     return dio;

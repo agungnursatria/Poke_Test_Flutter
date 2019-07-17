@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:alice/alice.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/di/injector.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/page/home/bloc/home_bloc.dart';
 import 'package:test_app/page/home/bloc/home_event.dart';
@@ -21,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   HomeBloc _homeBloc;
   Connection _connection;
+  Alice alice;
 
   @override
   void initState() {
@@ -28,6 +31,9 @@ class _HomePageState extends State<HomePage> {
     _connection = Connection(onRefreshScreen: onRefreshScreen);
     _connection.initConnectivity(mounted);
     _connection.startListen();
+
+    InjectorContainer injectorContainer = InjectorContainer();
+    alice = injectorContainer.getAliceInstance();
 
     _homeBloc = HomeBloc();
     _homeBloc.dispatch(FetchDataDB());
@@ -48,12 +54,12 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text(Env.appName),
           backgroundColor: Theme.of(context).primaryColor,
-          actions: (Env.alice != null)
+          actions: (Env.isDebug())
               ? <Widget>[
                   IconButton(
                     icon: Icon(Icons.info),
                     onPressed: () {
-                      Env.alice.showInspector();
+                      alice.showInspector();
                     },
                   )
                 ]

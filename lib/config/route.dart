@@ -1,6 +1,8 @@
+import 'package:alice/alice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:test_app/config/theme.dart';
+import 'package:test_app/di/injector.dart';
 import 'package:test_app/environment/env.dart';
 import 'package:test_app/page/detail/detail.dart';
 import 'package:test_app/page/home/home.dart';
@@ -13,8 +15,11 @@ class Routes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    InjectorContainer injectorContainer = InjectorContainer();
+    Alice alice = injectorContainer.getAliceInstance();
+
     return MaterialApp(
-      navigatorKey: (Env.alice != null) ? Env.alice.getNavigatorKey() : null,
+      navigatorKey: (Env.isDebug()) ? alice.getNavigatorKey() : null,
       theme: theme,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [

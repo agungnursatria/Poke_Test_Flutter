@@ -29,7 +29,6 @@ dependencies:
   kiwi: ^0.1.0
   dio: ^2.1.2
   connectivity: ^0.3.2
-  flutter_stetho: ^0.2.2
   logging: ^0.11.3+2
   alice: ^0.0.4
   shared_preferences: ^0.5.2+1

@@ -1,11 +1,9 @@
-import 'package:alice/alice.dart';
 
 enum EnvType { DEVELOPMENT, STAGING, PRODUCTION, TESTING }
+
 class Env{
   static String appName;
   static EnvType environmentType;
-
-  static Alice alice;
 
   static String dbName;
   static int dbVersion;
