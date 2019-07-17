@@ -1,7 +1,5 @@
-import 'package:alice/alice.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/di/injector.dart';
-import 'package:test_app/environment/env.dart';
 import 'package:test_app/utility/framework/application.dart';
 
 class Init extends StatelessWidget {
@@ -23,7 +21,6 @@ class Init extends StatelessWidget {
 
     Application application = injector.getAppStoreInstance();
     await application.onCreate();
-    return true;
   }
 
   @override
@@ -31,7 +28,7 @@ class Init extends StatelessWidget {
     return FutureBuilder(
       future: init(),
       builder: (context, snapshot){
-        if (snapshot.hasData){
+        if (snapshot.connectionState == ConnectionState.done){
           return appBuilder(context, '/');
         }
         return splash;
